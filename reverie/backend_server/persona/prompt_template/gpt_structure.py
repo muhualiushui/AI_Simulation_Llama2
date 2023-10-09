@@ -10,7 +10,7 @@ import random
 import openai
 import time 
 #-------------------------------------------------------------------------------
-import reverie.backend_server.persona.prompt_template.API as pt
+import API as pt
 #-------------------------------------------------------------------------------
 import sys
 sys.path.append("reverie/backend_server/")
@@ -261,13 +261,16 @@ def safe_generate_response(prompt,
       print ("~~~~")
   return fail_safe_response
 
-
+from transformers import GPT2TokenizerFast
 def get_embedding(text, model="text-embedding-ada-002"):
   text = text.replace("\n", " ")
+  tokenizer = GPT2TokenizerFast.from_pretrained('Xenova/text-embedding-ada-002')
   if not text: 
     text = "this is blank"
-  return openai.Embedding.create(
-          input=[text], model=model)['data'][0]['embedding']
+  return tokenizer(text, return_tensors="pt")['input_ids'][0].tolist()
+  #-----------------------------------------------------------------------------Origi
+  # return openai.Embedding.create(
+  #         input=[text], model=model)['data'][0]['embedding']
 
 
 if __name__ == '__main__':

@@ -5,8 +5,8 @@ def send(query):
     try:
         url = "https://llama.k8s-gosha.atlas.illinois.edu/completion" 
         myobj = {
-            "prompt": query,
-            "n_predict": 128
+            "prompt": "<s>[INST]"+query+"[/INST]",
+            "n_predict": -1
         }
 
         headers = {
