@@ -1,11 +1,11 @@
-## Abstract
+# Abstract
 
 This project is an alternative to [Generative Agents](https://github.com/joonspk-research/generative_agents.git), substituting the GPT model with the Llama model from the University of Illinois at Urbana-Champaign. The aim is to conduct simulations with specific persona settings and evaluate the Llama model's performance in interactions resembling human-like NPC communication.
 
 ## Files Modified
 
-- `reverie/backend_server/persona/prompt_template/gpt_structure.py`
-- `reverie/backend_server/persona/prompt_template/run_gpt_prompt.py`
+- reverie/backend_server/persona/prompt_template/gpt_structure.py
+- reverie/backend_server/persona/prompt_template/run_gpt_prompt.py
 
 For the details of the changes, see the comments within the files.
 
@@ -38,16 +38,28 @@ python reverie.py
 ### Step 3
 Follow the on-screen instructions for setup.
 
-1. You'll be prompted to "Enter the name of the forked simulation." Go to `environment/frontend_server/storage` to see package names:
+1. You'll be prompted to `Enter the name of the forked simulation:`
+  - Go to `environment/frontend_server/storage` to see package names:
   - `base_the_ville_isabella_maria_klaus` (Smaller simulation with 3 people)
   - `base_the_ville_n25` (Larger simulation with 25 people)
-  For testing, use `base_the_ville_isabella_maria_klaus`.
+  - Chooce the enter the package name which you want to simulation
+  -  For testing, considering less computation cost, enter:
+  ```bash
+  base_the_ville_isabella_maria_klaus
+  ```
 
-2. You'll then be prompted to "Enter the name of the new simulation." Type a name, e.g., "test-simulation".
+2. Then it would shows `Enter the name of the new simulation:` and you can type any name like:
+```bash
+test-simulation
+```
 
-3. At the "Enter option:" prompt, type `run` followed by a number to specify the simulation duration, like `run 10` or `run 100`.
+4. Finally, in `Enter option:`, type `run` followed by a number to specify the simulation duration like:
+```bash
+ run 10
+```
 
-# Final Steps:
+## Final Steps:
+You would able to see the `Enter option:` again after one simulation complete:
 - To save the results, type "fin".
 - To exit without saving, type "exit".
 - To run another simulation, type "run" followed by a number.
