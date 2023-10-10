@@ -11,11 +11,11 @@ def send(query):
 
         headers = {
             "Content-Type": "application/json",
-            "Authorization": "Basic YXRsYXNhaXRlYW06anhAVTJXUzhCR1Nxd3U="
+            "Authorization": "your authorization"
         }
 
         response = requests.post(url, data=json.dumps(myobj), headers=headers, 
-                                auth=('atlasaiteam', 'jx@U2WS8BGSqwu'), timeout=100)
+                                auth=('Your account', 'Your password'), timeout=100)
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
