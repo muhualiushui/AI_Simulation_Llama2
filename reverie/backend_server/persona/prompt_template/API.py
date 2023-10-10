@@ -15,7 +15,7 @@ def send(query):
         }
 
         response = requests.post(url, data=json.dumps(myobj), headers=headers, 
-                                auth=('atlasaiteam', 'jx@U2WS8BGSqwu'), timeout=10)
+                                auth=('atlasaiteam', 'jx@U2WS8BGSqwu'), timeout=100)
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
