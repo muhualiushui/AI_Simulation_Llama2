@@ -10,7 +10,8 @@ This project is an alternative to [Generative Agents](https://github.com/joonspk
 For the details of the changes, see the comments within the files.
 
 **New File Added:**
-- `reverie/backend_server/API.py` (Used for accessing the Llama model)
+- `reverie/backend_server/API.py` (Used for accessing the Llama model From university)
+- > **Note**: If you are the student in the university, asked the acess account and password First and you need enter the account and password into this API file before any simulation beginning
 
 ## Simulation Steps
 
