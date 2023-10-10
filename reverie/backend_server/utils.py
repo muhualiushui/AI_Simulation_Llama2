@@ -1,7 +1,7 @@
 # Copy and paste your OpenAI API Key
-openai_api_key = "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"
+openai_api_key = "your API"
 # Put your name
-key_owner = "muhualiushui"
+key_owner = "your name"
 
 maze_assets_loc = "../../environment/frontend_server/static_dirs/assets"
 env_matrix = f"{maze_assets_loc}/the_ville/matrix"
