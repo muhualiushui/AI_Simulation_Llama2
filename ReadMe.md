@@ -11,7 +11,7 @@ For the details of the changes, see the comments within the files.
 
 **New File Added:**
 - `reverie/backend_server/API.py` (Used for accessing the Llama model From university)
-- > **Note**: If you are the student in the university, asked the acess account and password First and you need enter the account and password into this API file before any simulation beginning
+> **Note**: If you are the student in the university, asked the acess account and password First and you need enter the account and password into this API file before any simulation beginning
 
 ## Simulation Steps
 
@@ -41,8 +41,8 @@ Follow the on-screen instructions for setup.
 
 1. You'll be prompted to `Enter the name of the forked simulation:`
   - Go to `environment/frontend_server/storage` to see package names:
-  - `base_the_ville_isabella_maria_klaus` (Smaller simulation with 3 people)
-  - `base_the_ville_n25` (Larger simulation with 25 people)
+    - `base_the_ville_isabella_maria_klaus`: a smaller simulation with 3 people
+    - `base_the_ville_n25`: a larger simulation with 25 people
   - Chooce the enter the package name which you want to simulation
   -  For testing, considering less computation cost, enter:
   ```bash
@@ -61,8 +61,8 @@ test-simulation
 
 ## Final Steps:
 You would able to see the `Enter option:` again after one simulation complete:
-- To save the results, type "fin".
-- To exit without saving, type "exit".
+- To save the results, type `fin`
+- To exit without saving, type `exit`
 - To run another simulation, type "run" followed by a number.
 
 
