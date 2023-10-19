@@ -385,6 +385,8 @@ def run_gpt_prompt_task_decomp(persona,
     return prompt_input
 
   def __func_clean_up(gpt_response, prompt=""):
+    print("TESTING-----------------???????????????????????????????????????????????????????????????????????????????????????????\n")
+    print(prompt)
     print ("TOODOOOOOO")
     print (gpt_response)
     print ("-==- -==- -==- ")
@@ -400,14 +402,21 @@ def run_gpt_prompt_task_decomp(persona,
         _cr += [i]
     for count, i in enumerate(_cr): 
       k = [j.strip() for j in i.split("(duration in minutes:")]
+      print("k, need to be carefull:",k,"------------------------------------------------------------\n")
       task = k[0]
-      if task[-1] == ".": 
-        task = task[:-1]
+      if len(task) <1:
+        print("discover empty task")
+        continue
+      task = task[:-1]
+      print(len(k))
+      if len(k)<2:
+        print("discover short k!!!!!!!")
+        continue
       duration = int(k[1].split(",")[0].strip())
       cr += [[task, duration]]
-
-    total_expected_min = int(prompt.split("(total duration in minutes")[-1]
-                                   .split("):")[0].strip())
+    
+    total_expected_min = int(gpt_response.split("(total duration in minutes")[-1]
+                                    .split("):")[0].strip())
     
     # TODO -- now, you need to make sure that this is the same as the sum of 
     #         the current action sequence. 
@@ -444,8 +453,10 @@ def run_gpt_prompt_task_decomp(persona,
   def __func_validate(gpt_response, prompt=""): 
     # TODO -- this sometimes generates error 
     try: 
+      print("Sucessfull Runing for once, line 451---------------------------------------------------------")
       __func_clean_up(gpt_response)
     except: 
+      print("ERROR IN __func_validate, line 451---------------------------------------------------------")
       pass
       # return False
     return gpt_response

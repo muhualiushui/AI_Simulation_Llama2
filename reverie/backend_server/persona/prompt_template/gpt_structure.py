@@ -208,8 +208,8 @@ def GPT_request(prompt):
     output= pt.send(prompt)["content"]
     return output
   except: 
-    print ("TOKEN LIMIT EXCEEDED")
-    return "TOKEN LIMIT EXCEEDED"
+    print ("Llama ERROR")
+    return "Llama ERROR"
 
 
 def generate_prompt(curr_input, prompt_lib_file): 
@@ -252,9 +252,9 @@ def safe_generate_response(prompt,
   for i in range(repeat): 
     curr_gpt_response = GPT_request(prompt)
     # original func_validate(curr_gpt_response,prompt=prompt): 
-    if func_validate(curr_gpt_response): 
+    if func_validate(curr_gpt_response,prompt=prompt): 
       # original func_clean_up(curr_gpt_response,prompt=prompt):
-      return func_clean_up(curr_gpt_response)
+      return func_clean_up(curr_gpt_response,prompt=prompt)
     if verbose: 
       print ("---- repeat count: ", i, curr_gpt_response)
       print (curr_gpt_response)
@@ -268,7 +268,7 @@ def get_embedding(text, model="text-embedding-ada-002"):
   if not text: 
     text = "this is blank"
   return tokenizer(text, return_tensors="pt")['input_ids'][0].tolist()
-  #-----------------------------------------------------------------------------Origi
+  #--------------------------------------------------
   # return openai.Embedding.create(
   #         input=[text], model=model)['data'][0]['embedding']
 
