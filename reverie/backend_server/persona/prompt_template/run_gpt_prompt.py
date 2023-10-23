@@ -413,10 +413,11 @@ def run_gpt_prompt_task_decomp(persona,
         print("discover short k!!!!!!!")
         continue
       duration = int(k[1].split(",")[0].strip())
-      cr += [[task, duration]]
+      cr += [[task, duration]]# problem 2
     
-    total_expected_min = int(gpt_response.split("(total duration in minutes")[-1]
-                                    .split("):")[0].strip())
+    total_expected_min = int(prompt.split("(total duration in minutes")[-1]
+                                    .split("):")[0].strip())#problem 1
+    # total_expected_min=60
     
     # TODO -- now, you need to make sure that this is the same as the sum of 
     #         the current action sequence. 
@@ -453,8 +454,8 @@ def run_gpt_prompt_task_decomp(persona,
   def __func_validate(gpt_response, prompt=""): 
     # TODO -- this sometimes generates error 
     try: 
-      print("Sucessfull Runing for once, line 451---------------------------------------------------------")
       __func_clean_up(gpt_response)
+      print("Sucessfull Runing for once, line 451---------------------------------------------------------")
     except: 
       print("ERROR IN __func_validate, line 451---------------------------------------------------------")
       pass
