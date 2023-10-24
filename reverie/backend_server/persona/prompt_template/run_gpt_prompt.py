@@ -402,16 +402,16 @@ def run_gpt_prompt_task_decomp(persona,
         _cr += [i]
     for count, i in enumerate(_cr): 
       k = [j.strip() for j in i.split("(duration in minutes:")]
+      if len(k) < 2:
+        k = [j.strip() for j in i.split("[duration in minutes:")]
+      if len(k) < 2:
+        k = [j.strip() for j in i.split("(duration:")]
       print("k, need to be carefull:",k,"------------------------------------------------------------\n")
       task = k[0]
       if len(task) <1:
         print("discover empty task")
         continue
       task = task[:-1]
-      print(len(k))
-      if len(k)<2:
-        print("discover short k!!!!!!!")
-        continue
       duration = int(k[1].split(",")[0].strip())
       cr += [[task, duration]]# problem 2
     
