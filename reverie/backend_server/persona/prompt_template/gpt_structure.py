@@ -252,9 +252,9 @@ def safe_generate_response(prompt,
   for i in range(repeat): 
     curr_gpt_response = GPT_request(prompt)
     # original func_validate(curr_gpt_response,prompt=prompt): 
-    if func_validate(curr_gpt_response,prompt=prompt): 
+    if func_validate(curr_gpt_response): 
       # original func_clean_up(curr_gpt_response,prompt=prompt):
-      return func_clean_up(curr_gpt_response,prompt=prompt)
+      return func_clean_up(curr_gpt_response)
     if verbose: 
       print ("---- repeat count: ", i, curr_gpt_response)
       print (curr_gpt_response)

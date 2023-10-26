@@ -415,7 +415,7 @@ def run_gpt_prompt_task_decomp(persona,
       duration = int(k[1].split(",")[0].strip())
       cr += [[task, duration]]# problem 2
     
-    total_expected_min = int(prompt.split("(total duration in minutes")[-1]
+    total_expected_min = int(gpt_response.split("(total duration in minutes")[-1]
                                     .split("):")[0].strip())#problem 1
     # total_expected_min=60
     
