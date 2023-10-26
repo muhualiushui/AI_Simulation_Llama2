@@ -506,7 +506,7 @@ def run_gpt_prompt_task_decomp(persona,
     # HM?????????
     # if time_sum < duration: 
     if time_sum <= duration: 
-      fin_output += [[i_task, i_duration]]
+      fin_output += [[i_task, i_duration]] #another error 
     else: 
       break
   ftime_sum = 0
