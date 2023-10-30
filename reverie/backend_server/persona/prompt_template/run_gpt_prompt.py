@@ -385,8 +385,6 @@ def run_gpt_prompt_task_decomp(persona,
     return prompt_input
 
   def __func_clean_up(gpt_response, prompt=""):
-    print("TESTING-----------------???????????????????????????????????????????????????????????????????????????????????????????\n")
-    print(prompt)
     print ("TOODOOOOOO")
     print (gpt_response)
     print ("-==- -==- -==- ")
@@ -402,22 +400,14 @@ def run_gpt_prompt_task_decomp(persona,
         _cr += [i]
     for count, i in enumerate(_cr): 
       k = [j.strip() for j in i.split("(duration in minutes:")]
-      if len(k) < 2:
-        k = [j.strip() for j in i.split("[duration in minutes:")]
-      if len(k) < 2:
-        k = [j.strip() for j in i.split("(duration:")]
-      print("k, need to be carefull:",k,"------------------------------------------------------------\n")
-      task = k[0]
-      if len(task) <1:
-        print("discover empty task")
+      if len(k)<2:
         continue
+      task = k[0]
       task = task[:-1]
       duration = int(k[1].split(",")[0].strip())
       cr += [[task, duration]]# problem 2
-    
-    total_expected_min = int(gpt_response.split("(total duration in minutes")[-1]
-                                    .split("):")[0].strip())#problem 1
-    # total_expected_min=60
+    total_expected_min = int(gpt_response.split("total duration in minutes:")[-1]
+                                    .split(")")[0].strip())
     
     # TODO -- now, you need to make sure that this is the same as the sum of 
     #         the current action sequence. 
