@@ -406,9 +406,9 @@ def run_gpt_prompt_task_decomp(persona,
       task = task[:-1]
       duration = int(k[1].split(",")[0].strip())
       cr += [[task, duration]]# problem 2
-    total_expected_min = int(gpt_response.split("total duration in minutes:")[-1]
-                                    .split(")")[0].strip())
-    
+    total_expected_min = int(gpt_response.split("total duration:")[-1])
+    print("Total expected min: ", total_expected_min)
+
     # TODO -- now, you need to make sure that this is the same as the sum of 
     #         the current action sequence. 
     curr_min_slot = [["dummy", -1],] # (task_name, task_index)
