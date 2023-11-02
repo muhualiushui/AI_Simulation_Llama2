@@ -406,8 +406,8 @@ def run_gpt_prompt_task_decomp(persona,
       task = task[:-1]
       duration = int(k[1].split(",")[0].strip())
       cr += [[task, duration]]# problem 2
-    total_expected_min = int(gpt_response.split("total duration:")[-1])
-    print("Total expected min: ", total_expected_min)
+    total_expected_min = int(prompt.split("(total duration in minutes")[-1]
+                                    .split("):")[0].strip())#problem 1
 
     # TODO -- now, you need to make sure that this is the same as the sum of 
     #         the current action sequence. 
@@ -592,15 +592,14 @@ def run_gpt_prompt_action_sector(action_description,
 
 
   def __func_clean_up(gpt_response, prompt=""):
-    cleaned_response = gpt_response.split("}")[0]
-    return cleaned_response
+    return gpt_response
 
   def __func_validate(gpt_response, prompt=""): 
     if len(gpt_response.strip()) < 1: 
-      return False
-    if "}" not in gpt_response:
+      print("type 1 error in line 561```````````````````````````````````````````````````````````")
       return False
     if "," in gpt_response: 
+      print("type 1 error in line 602```````````````````````````````````````````````````````````")
       return False
     return True
   

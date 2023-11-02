@@ -7,8 +7,8 @@ memory that aids in grounding their behavior in the game world.
 """
 import json
 import sys
-sys.path.append('../../')
 
+sys.path.append('../../')
 from utils import *
 from global_methods import *
 
@@ -100,7 +100,10 @@ class MemoryTree:
 
     if not curr_arena: 
       return ""
-
+    print("Identified?????????????????????????????????????/")
+    print(curr_arena)
+    print(curr_arena.strip())
+    curr_arena = curr_arena.strip()
     try: 
       x = ", ".join(list(self.tree[curr_world][curr_sector][curr_arena]))
     except: 
