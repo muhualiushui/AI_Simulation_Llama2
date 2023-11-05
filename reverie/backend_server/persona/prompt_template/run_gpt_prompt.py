@@ -592,14 +592,17 @@ def run_gpt_prompt_action_sector(action_description,
 
 
   def __func_clean_up(gpt_response, prompt=""):
+    # gpt_response=gpt_response.split("}")[0]
     return gpt_response
 
   def __func_validate(gpt_response, prompt=""): 
     if len(gpt_response.strip()) < 1: 
       print("type 1 error in line 561```````````````````````````````````````````````````````````")
       return False
+    # if "}" not in gpt_response:
+    #   return False 
     if "," in gpt_response: 
-      print("type 1 error in line 602```````````````````````````````````````````````````````````")
+      print("type 2 error in line 602```````````````````````````````````````````````````````````")
       return False
     return True
   
@@ -883,7 +886,6 @@ def run_gpt_prompt_pronunciatio(action_description, persona, verbose=False):
         return False
     except: return False
     return True 
-    return True
 
   print ("asdhfapsh8p9hfaiafdsi;ldfj as DEBUG 4") ########
   #-----------------------------------------------------------------------Original
@@ -1033,7 +1035,7 @@ def run_gpt_prompt_event_triple(action_description, persona, verbose=False):
 
 
 
-
+# Problem !
 def run_gpt_prompt_act_obj_desc(act_game_object, act_desp, persona, verbose=False): 
   def create_prompt_input(act_game_object, act_desp, persona): 
     prompt_input = [act_game_object, 
