@@ -32,6 +32,9 @@ def execute(persona, maze, personas, plan):
   OUTPUT: 
     execution
   """
+  print("let's see?????????????????????????")
+  print(plan)
+  print(maze.address_tiles)
   if "<random>" in plan and persona.scratch.planned_path == []: 
     persona.scratch.act_path_set = False
 
@@ -44,7 +47,8 @@ def execute(persona, maze, personas, plan):
 
     print ('aldhfoaf/????')
     print (plan)
-
+    print("<persona>")
+    print("<persona>" in plan)
     if "<persona>" in plan: 
       # Executing persona-persona interaction.
       target_p_tile = (personas[plan.split("<persona>")[-1].strip()]

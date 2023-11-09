@@ -49,7 +49,7 @@ def GPT4_request(prompt):
 
   try: 
     output= pt.send(prompt)["content"]
-    return output
+    return output.strip()
   
   except: 
     print ("Lama ERROR")
@@ -71,7 +71,7 @@ def ChatGPT_request(prompt):
   # temp_sleep()
   try: 
     output= pt.send(prompt)["content"]
-    return output
+    return output.strip()
   
   except: 
     print ("Lama ERROR")
@@ -142,7 +142,8 @@ def ChatGPT_safe_generate_response(prompt,
       end_index = curr_gpt_response.rfind('}') + 1
       curr_gpt_response = curr_gpt_response[:end_index]
       curr_gpt_response = json.loads(curr_gpt_response)["output"]
-
+      print("to see curr_gpt_response~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+      print(curr_gpt_response)
       # print ("---ashdfaf")
       # print (curr_gpt_response)
       # print ("000asdfhia")
@@ -206,7 +207,7 @@ def GPT_request(prompt):
   temp_sleep()
   try: 
     output= pt.send(prompt)["content"]
-    return output
+    return output.strip()
   except: 
     print ("Llama ERROR")
     return "Llama ERROR"

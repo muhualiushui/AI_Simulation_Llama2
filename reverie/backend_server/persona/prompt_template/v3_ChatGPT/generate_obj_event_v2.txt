@@ -1,0 +1,29 @@
+generate_obj_event_v1.txt
+
+Variables: 
+!<INPUT 0>! -- Object name 
+!<INPUT 1>! -- Persona name
+!<INPUT 2>! -- Persona action event description 
+!<INPUT 3>! -- Object name 
+!<INPUT 4>! -- Object name 
+
+<commentblockmarker>###</commentblockmarker>
+Task: We want to understand the state of an object that is being used by someone. 
+
+---
+Example 1:
+Kelly is writing on the desk
+desk is: using by Kelly
+
+Example 2:
+Jason is fixing the TV
+Tv is: fixing by Kelly
+
+Example 3:
+Jessica is spleeping on the bed
+bed is: using by Jessica
+---
+
+Now, We want to know about !<INPUT 0>!'s state. 
+!<INPUT 1>! is !<INPUT 2>! with the !<INPUT 3>!.
+!<INPUT 4>! is:
