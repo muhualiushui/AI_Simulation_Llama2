@@ -70,7 +70,7 @@ def ChatGPT_request(prompt):
   """
   # temp_sleep()
   try: 
-    output= pt.send(prompt)["content"]
+    output= (pt.send(prompt)["content"]).rstrip()
     return output.strip()
   
   except: 
@@ -206,7 +206,7 @@ def GPT_request(prompt):
   """
   temp_sleep()
   try: 
-    output= pt.send(prompt)["content"]
+    output= (pt.send(prompt)["content"]).rstrip()
     return output.strip()
   except: 
     print ("Llama ERROR")
