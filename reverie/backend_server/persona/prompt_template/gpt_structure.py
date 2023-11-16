@@ -25,7 +25,7 @@ def temp_sleep(seconds=0.1):
 def ChatGPT_single_request(prompt): 
   temp_sleep()
 
-  return pt.send(prompt)["content"]
+  return (pt.send(prompt)["content"]).rstrip()
 
 
 # ============================================================================
@@ -33,7 +33,7 @@ def ChatGPT_single_request(prompt):
 # ============================================================================
 
 # ALL changed from GPT to LAMA--------------------------------------------------------------------------------
-def GPT4_request(prompt): 
+def Mistral(prompt): 
   """
   Given a prompt and a dictionary of GPT parameters, make a request to OpenAI
   server and returns the response. 
@@ -48,34 +48,34 @@ def GPT4_request(prompt):
   temp_sleep()
 
   try: 
-    output= pt.send(prompt)["content"]
-    return output.strip()
-  
-  except: 
-    print ("Lama ERROR")
-    return "Lama ERROR"
-
-
-def ChatGPT_request(prompt): 
-  """
-  Given a prompt and a dictionary of GPT parameters, make a request to OpenAI
-  server and returns the response. 
-  ARGS:
-    prompt: a str prompt
-    gpt_parameter: a python dictionary with the keys indicating the names of  
-                   the parameter and the values indicating the parameter 
-                   values.   
-  RETURNS: 
-    a str of GPT-3's response. 
-  """
-  # temp_sleep()
-  try: 
     output= (pt.send(prompt)["content"]).rstrip()
     return output.strip()
   
   except: 
     print ("Lama ERROR")
     return "Lama ERROR"
+
+
+# def ChatGPT_request(prompt): 
+#   """
+#   Given a prompt and a dictionary of GPT parameters, make a request to OpenAI
+#   server and returns the response. 
+#   ARGS:
+#     prompt: a str prompt
+#     gpt_parameter: a python dictionary with the keys indicating the names of  
+#                    the parameter and the values indicating the parameter 
+#                    values.   
+#   RETURNS: 
+#     a str of GPT-3's response. 
+#   """
+#   # temp_sleep()
+#   try: 
+#     output= (pt.send(prompt)["content"]).rstrip()
+#     return output.strip()
+  
+#   except: 
+#     print ("Lama ERROR")
+#     return "Lama ERROR"
 # ----------------------------------------------------------------------------------------------------------------
 
 def GPT4_safe_generate_response(prompt, 
@@ -98,7 +98,7 @@ def GPT4_safe_generate_response(prompt,
   for i in range(repeat): 
 
     try: 
-      curr_gpt_response = GPT4_request(prompt).strip()
+      curr_gpt_response = Mistral(prompt).strip()
       end_index = curr_gpt_response.rfind('}') + 1
       curr_gpt_response = curr_gpt_response[:end_index]
       curr_gpt_response = json.loads(curr_gpt_response)["output"]
@@ -138,7 +138,7 @@ def ChatGPT_safe_generate_response(prompt,
   for i in range(repeat): 
 
     try: 
-      curr_gpt_response = ChatGPT_request(prompt).strip()
+      curr_gpt_response = Mistral(prompt).strip()
       end_index = curr_gpt_response.rfind('}') + 1
       curr_gpt_response = curr_gpt_response[:end_index]
       curr_gpt_response = json.loads(curr_gpt_response)["output"]
@@ -174,7 +174,7 @@ def ChatGPT_safe_generate_response_OLD(prompt,
 
   for i in range(repeat): 
     try: 
-      curr_gpt_response = ChatGPT_request(prompt).strip()
+      curr_gpt_response = Mistral(prompt).strip()
       if func_validate(curr_gpt_response, prompt=prompt): 
         return func_clean_up(curr_gpt_response, prompt=prompt)
       if verbose: 
@@ -192,25 +192,25 @@ def ChatGPT_safe_generate_response_OLD(prompt,
 # ###################[SECTION 2: ORIGINAL GPT-3 STRUCTURE] ###################
 # ============================================================================
 
-def GPT_request(prompt): 
-  """
-  Given a prompt and a dictionary of GPT parameters, make a request to OpenAI
-  server and returns the response. 
-  ARGS:
-    prompt: a str prompt
-    gpt_parameter: a python dictionary with the keys indicating the names of  
-                   the parameter and the values indicating the parameter 
-                   values.   
-  RETURNS: 
-    a str of GPT-3's response. 
-  """
-  temp_sleep()
-  try: 
-    output= (pt.send(prompt)["content"]).rstrip()
-    return output.strip()
-  except: 
-    print ("Llama ERROR")
-    return "Llama ERROR"
+# def GPT_request(prompt): 
+#   """
+#   Given a prompt and a dictionary of GPT parameters, make a request to OpenAI
+#   server and returns the response. 
+#   ARGS:
+#     prompt: a str prompt
+#     gpt_parameter: a python dictionary with the keys indicating the names of  
+#                    the parameter and the values indicating the parameter 
+#                    values.   
+#   RETURNS: 
+#     a str of GPT-3's response. 
+#   """
+#   temp_sleep()
+#   try: 
+#     output= (pt.send(prompt)["content"]).rstrip()
+#     return output.strip()
+#   except: 
+#     print ("Llama ERROR")
+#     return "Llama ERROR"
 
 
 def generate_prompt(curr_input, prompt_lib_file): 
@@ -251,7 +251,7 @@ def safe_generate_response(prompt,
     print (prompt)
 
   for i in range(repeat): 
-    curr_gpt_response = GPT_request(prompt)
+    curr_gpt_response = Mistral(prompt)
     print("To see GPT response~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     print(curr_gpt_response)
     if func_validate(curr_gpt_response,prompt=prompt): 

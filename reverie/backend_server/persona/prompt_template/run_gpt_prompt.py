@@ -592,10 +592,10 @@ def run_gpt_prompt_action_sector(action_description,
 
 
   def __func_clean_up(gpt_response, prompt=""):
-    # gpt_response=gpt_response.split("}")[0]
+    gpt_response=gpt_response.split("}")[0]
     if gpt_response[0]=="{":
       return gpt_response.split("{")[1]
-    return gpt_response
+    return gpt_response.strip()
 
   def __func_validate(gpt_response, prompt=""): 
     if len(gpt_response.strip()) < 1: 
@@ -736,7 +736,7 @@ def run_gpt_prompt_action_arena(action_description,
     cleaned_response = gpt_response.split("}")[0]
     if cleaned_response[0]=="{":
       return cleaned_response.split("{")[1]
-    return cleaned_response
+    return cleaned_response.strip()
 
   def __func_validate(gpt_response, prompt=""): 
     if len(gpt_response.strip()) < 1: 
@@ -754,7 +754,7 @@ def run_gpt_prompt_action_arena(action_description,
   # gpt_param = {"engine": "text-davinci-003", "max_tokens": 15, 
   #              "temperature": 0, "top_p": 1, "stream": False,
   #              "frequency_penalty": 0, "presence_penalty": 0, "stop": None}
-  prompt_template = "persona/prompt_template/v1/action_location_object_vMar11.txt"
+  prompt_template = "persona/prompt_template/v1/action_location_object_vMar12.txt"
   prompt_input = create_prompt_input(action_description, persona, maze, act_world, act_sector)
   prompt = generate_prompt(prompt_input, prompt_template)
 
@@ -764,7 +764,6 @@ def run_gpt_prompt_action_arena(action_description,
   #                                  __func_validate, __func_clean_up)
   output = safe_generate_response(prompt, 5, fail_safe,
                                    __func_validate, __func_clean_up)
-  print (output)
   # y = f"{act_world}:{act_sector}"
   # x = [i.strip() for i in persona.s_mem.get_str_accessible_sector_arenas(y).split(",")]
   # if output not in x: 
@@ -904,8 +903,6 @@ def run_gpt_prompt_pronunciatio(action_description, persona, verbose=False):
   fail_safe = get_fail_safe()
   output = ChatGPT_safe_generate_response(prompt, example_output, special_instruction, 3, fail_safe,
                                           __chat_func_validate, __chat_func_clean_up, True)
-  print("output1___________________________")
-  print(output)
   if output != False:
   #-----------------------------------------------------------------------Original 
     # return output, [output, prompt, gpt_param, prompt_input, fail_safe]
@@ -1093,8 +1090,6 @@ def run_gpt_prompt_act_obj_desc(act_game_object, act_desp, persona, verbose=Fals
   fail_safe = get_fail_safe(act_game_object) ########
   output = ChatGPT_safe_generate_response(prompt, example_output, special_instruction, 3, fail_safe,
                                           __chat_func_validate, __chat_func_clean_up, True)
-  print("output2___________________________")
-  print(output)
   if output != False: 
     #-----------------------------------------------------------------------Original
     # return output, [output, prompt, gpt_param, prompt_input, fail_safe]

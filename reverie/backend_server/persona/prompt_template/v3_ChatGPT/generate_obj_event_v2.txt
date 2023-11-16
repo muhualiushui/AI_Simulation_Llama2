@@ -17,7 +17,7 @@ desk is: using by Kelly
 
 Example 2:
 Jason is fixing the TV
-Tv is: fixing by Kelly
+Tv is: fixing by Jason
 
 Example 3:
 Jessica is spleeping on the bed
