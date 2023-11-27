@@ -656,7 +656,7 @@ def run_gpt_prompt_action_sector(action_description,
   #-----------------------------------------------------------------------Original
   # output = safe_generate_response(prompt, gpt_param, 5, fail_safe,
   #                                  __func_validate, __func_clean_up)
-  output = safe_generate_response(prompt, 5, fail_safe,
+  output = safe_generate_response(prompt, 10, fail_safe,
                                    __func_validate, __func_clean_up)
   y = f"{maze.access_tile(persona.scratch.curr_tile)['world']}"
   x = [i.strip() for i in persona.s_mem.get_str_accessible_sectors(y).split(",")]
