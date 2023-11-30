@@ -313,7 +313,9 @@ class ReverieServer:
       # new environment file that matches our step count. That's when we run 
       # the content of this for loop. Otherwise, we just wait. 
       curr_env_file = f"{sim_folder}/environment/{self.step}.json"
+
       if check_if_file_exists(curr_env_file):
+        print(int_counter)
         # If we have an environment file, it means we have a new perception
         # input to our personas. So we first retrieve it.
         try: 
@@ -370,6 +372,7 @@ class ReverieServer:
           # This is where the core brains of the personas are invoked. 
           movements = {"persona": dict(), 
                        "meta": dict()}
+          enviornment = dict()
           for persona_name, persona in self.personas.items(): 
             # <next_tile> is a x,y coordinate. e.g., (58, 9)
             # <pronunciatio> is an emoji. e.g., "\ud83d\udca4"
@@ -385,6 +388,11 @@ class ReverieServer:
             movements["persona"][persona_name]["description"] = description
             movements["persona"][persona_name]["chat"] = (persona
                                                           .scratch.chat)
+            enviornment[persona_name] = {}
+            enviornment[persona_name]["maze"] = self.maze.maze_name
+            enviornment[persona_name]["x"] = next_tile[0]
+            enviornment[persona_name]["y"] = next_tile[1]
+
 
           # Include the meta information about the current stage in the 
           # movements dictionary. 
@@ -405,6 +413,13 @@ class ReverieServer:
           with open(curr_move_file, "w") as outfile: 
             outfile.write(json.dumps(movements, indent=2))
 
+          # We also write the environment file that will be sent to the
+          curr_env_path = f" {sim_folder}/environment"
+          if not os.path.exists(curr_env_path):
+            os.makedirs(curr_env_path)
+          curr_env_file = f"{sim_folder}/environment/{self.step+1}.json"
+          with open(curr_env_file, "w") as outfile: 
+            outfile.write(json.dumps(enviornment, indent=2))
           # After this cycle, the world takes one step forward, and the 
           # current time moves by <sec_per_step> amount. 
           self.step += 1
@@ -414,7 +429,6 @@ class ReverieServer:
           
       # Sleep so we don't burn our machines. 
       time.sleep(self.server_sleep)
-
 
   def open_server(self): 
     """
